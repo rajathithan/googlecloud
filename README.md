@@ -26,7 +26,7 @@ fi
 
 ```
 
-### Get all the networks, subnetworks and cidr ranges from a google project
+### Get all the networks, subnetworks , cidr ranges and gateway ip address from a google project
 
 ```
 #!/bin/bash
