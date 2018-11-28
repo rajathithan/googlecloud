@@ -1,7 +1,7 @@
 # Google Cloud Quick Scripts
 
 ```
-Scripts related to google cloud
+Shell scripts , python scripts and gcloud commands to administer the google cloud environment.
 ```
 
 ## Inventoy collection through cloud shell script
