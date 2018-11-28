@@ -1,4 +1,4 @@
-# Google Cloud quick scripts
+# Google Cloud Quick Scripts
 
 ```
 Scripts related to google cloud
