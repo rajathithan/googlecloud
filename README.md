@@ -59,4 +59,29 @@ done
 
 
 
+### Extracting the GCP firewall rules to a CSV file
+
+```
+gcloud compute firewall-rules list --format="table[box](
+          name,
+          network,
+          direction,
+          priority,
+          sourceRanges.list():label=SRC_RANGES,
+          destinationRanges.list():label=DEST_RANGES,
+          allowed[].map().firewall_rule().list():label=ALLOW,
+          denied[].map().firewall_rule().list():label=DENY,
+          sourceTags.list():label=SRC_TAGS,
+          sourceServiceAccounts.list():label=SRC_SVC_ACCT,
+          targetTags.list():label=TARGET_TAGS,
+          targetServiceAccounts.list():label=TARGET_SVC_ACCT,
+          disabled
+      )" | sed 's/[|]/,/g' | sed 's/[+]//g' | sed 's/[---]//g' |perl -pe 's/\d\K[,]/  /g' | perl -pe 's/\w\K[,]/  /g' > firewalls.csv
+```
+
+### Extracting the GCP routes to a CSV file
+
+```
+gcloud compute routes list | grep -v default-route | awk {'print $1,",",$2,",",$3,",",$4,",",$5'} > routes.csv
+```
 
