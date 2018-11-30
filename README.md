@@ -4,7 +4,7 @@
 Shell scripts , python scripts and gcloud commands to administer the google cloud environment.
 ```
 
-## Inventoy collection through cloud shell script
+## Inventory collection through cloud shell script
 
 ### Iterate through projects and run an extraction script
 
