@@ -86,12 +86,12 @@ gcloud compute routes list | grep -v default-route | awk {'print $1,",",$2,",",$
 ```
 
 
-### Extracting the services from a kubernetes environment
+### Extracting all the services in a yaml format from a kubernetes environment
 ```
 kubectl get services --all-namespaces | tail -n +2 | awk '{print $1,$2}'  | xargs -n2 sh -c 'kubectl get service $2 -n $1 -o yaml > service-$1-$2.yaml' sh
 ```
 
-### Extracting the deployments from a kubernetes environment
+### Extracting all the deployments in a yaml format from a kubernetes environment
 ```
 kubectl get deployments --all-namespaces | tail -n +2 | awk '{print $1,$2}'  | xargs -n2 sh -c 'kubectl get deployment $2 -n $1 -o yaml > deployment-$1-$2.yaml' sh
 ```
