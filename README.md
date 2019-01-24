@@ -178,3 +178,7 @@ echo "================================================"
 gcloud container clusters list | tail -n+2 | awk {'print $1,$2'}| xargs -r -n2 sh -c 'echo "===" & echo $1 & gcloud container clusters get-credentials $1 --region $2 & kubectl get services --all-namespaces | tail -n +2 ' sh
 
 ```
+### Extracting Service account and their keys 
+```
+gcloud iam service-accounts list | tail -n +2 | grep -E -o "\b[A-Za-z0-9._%+-]{0,50}@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b" | xargs -n1 sh -c 'echo $1 & gcloud iam service-accounts keys list --iam-account $1' sh
+```
