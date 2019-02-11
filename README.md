@@ -182,3 +182,10 @@ gcloud container clusters list | tail -n+2 | awk {'print $1,$2'}| xargs -r -n2 s
 ```
 gcloud iam service-accounts list | tail -n +2 | grep -E -o "\b[A-Za-z0-9._%+-]{0,50}@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}\b" | xargs -n1 sh -c 'echo $1 & gcloud iam service-accounts keys list --iam-account $1' sh
 ```
+### Extracting the GKE Master Ip
+```
+export CLUSTER_NAME=clustername
+export NODE_TAG=$(gcloud compute instance-templates describe $(gcloud compute instance-templates list --filter=name~gke-${CLUSTER_NAME:0:20} --limit=1 --uri) --format='get(properties.tags.items[0])')
+export GKE_MASTER_IP=$(gcloud compute firewall-rules describe ${NODE_TAG/-node/-ssh} --format='value(sourceRanges)')
+echo $GKE_MASTER_IP
+```
