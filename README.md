@@ -189,3 +189,14 @@ export NODE_TAG=$(gcloud compute instance-templates describe $(gcloud compute in
 export GKE_MASTER_IP=$(gcloud compute firewall-rules describe ${NODE_TAG/-node/-ssh} --format='value(sourceRanges)')
 echo $GKE_MASTER_IP
 ```
+
+### Get the VM instance Image list
+
+```
+gcloud compute instances list | awk '{print $1,$2}' | tail -n +2| xargs -n2 sh -c 'gcloud compute disks describe $1 --zone $2' sh
+
+gcloud compute instances list | awk '{print $1,$2}' | tail -n +2| xargs -n2 sh -c 'gcloud compute disks describe $1 --zone $2 --format="table(name,licenses[0])"' sh
+
+gcloud compute instances list | awk '{print $1,$2}' | tail -n +2| xargs -n2 sh -c 'gcloud compute disks describe $1 --zone $2 --format="table[box,title=VM-Image-list](name,licenses[0])"' sh
+
+```
