@@ -200,3 +200,9 @@ gcloud compute instances list | awk '{print $1,$2}' | tail -n +2| xargs -n2 sh -
 gcloud compute instances list | awk '{print $1,$2}' | tail -n +2| xargs -n2 sh -c 'gcloud compute disks describe $1 --zone $2 --format="table[box,title=VM-Image-list](name,licenses[0])"' sh
 
 ```
+
+
+### Get the VM instance and machine type in box format
+```
+gcloud compute instances list --format="table[box,title=Compute-Engine-Machine-Types](name,machine_type)"
+```
