@@ -115,7 +115,7 @@ gcloud compute networks list| tail -n+2 | awk '{print $1}'| xargs -n1 sh -c 'ech
 echo "================================================"
 echo "Interconnects"
 echo "================================================"
-gcloud compute interconnects list| tail -n+2 | awk '{print $1}'
+gcloud compute interconnects attachments list| tail -n+2 | awk '{print $1}'
 echo "================================================"
 echo "Cloud Routers"
 echo "================================================"
@@ -196,6 +196,8 @@ echo $GKE_MASTER_IP
 gcloud compute instances list | awk '{print $1,$2}' | tail -n +2| xargs -n2 sh -c 'gcloud compute disks describe $1 --zone $2' sh
 
 gcloud compute instances list | awk '{print $1,$2}' | tail -n +2| xargs -n2 sh -c 'gcloud compute disks describe $1 --zone $2 --format="table(name,licenses[0])"' sh
+
+gcloud compute instances list | awk '{print $1,$2}' | tail -n +2| xargs -n2 sh -c 'gcloud compute disks describe $1 --zone $2 --format="table(name,licenses[0])"| tail -n +2' sh
 
 gcloud compute instances list | awk '{print $1,$2}' | tail -n +2| xargs -n2 sh -c 'gcloud compute disks describe $1 --zone $2 --format="table[box,title=VM-Image-list](name,licenses[0])"' sh
 
