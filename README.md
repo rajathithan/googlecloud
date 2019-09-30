@@ -208,3 +208,10 @@ gcloud compute instances list | awk '{print $1,$2}' | tail -n +2| xargs -n2 sh -
 ```
 gcloud compute instances list --format="table[box,title=Compute-Engine-Machine-Types](name,machine_type)"
 ```
+
+
+### To restart the pods in crashLoopBackoff 
+```
+kubectl get po -n default | grep CrashLoopBackOff | awk {'print $1'} | xargs -n2 sh -c 'kubectl delete po $1 -n default' sh
+
+```
