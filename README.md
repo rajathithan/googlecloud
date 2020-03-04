@@ -215,3 +215,8 @@ gcloud compute instances list --format="table[box,title=Compute-Engine-Machine-T
 kubectl get po -n default | grep CrashLoopBackOff | awk {'print $1'} | xargs -n2 sh -c 'kubectl delete po $1 -n default' sh
 
 ```
+
+### To list pod names and their images
+```
+kubectl get pods -n default -o=jsonpath='{range .items[*]}{"\n"}{.metadata.name}{","}{range .spec.containers[*]}{.image}{""}{end}{end}' | sort > prod.csv
+```
