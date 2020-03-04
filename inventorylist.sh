@@ -1,4 +1,8 @@
 #!/bin/bash
+# To get the inventory list of major resources in a project 
+# use projects.sh script to iterate through projects
+# Author - Rajathithan Rajasekar - 03/03/2020
+
 echo "Inventory List"
 echo "================================================"
 echo "Service-accounts"
