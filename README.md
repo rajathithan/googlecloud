@@ -62,6 +62,8 @@ done
 ### Extracting the GCP firewall rules to a CSV file
 
 ```
+echo "NAME,NETWORK,DIRECTION,PRIORITY,SRC_RANGES,DEST_RANGES,ALLOW,DENY,SRC_TAGS,SRC_SVC_ACCT,TARGET_TAGS,TARGET_SVC_ACCT,DISABLED" > firewalls.csv
+
 gcloud compute firewall-rules list --format="table[box](
           name,
           network,
