@@ -76,7 +76,7 @@ gcloud compute firewall-rules list --format="table[box](
           targetTags.list():label=TARGET_TAGS,
           targetServiceAccounts.list():label=TARGET_SVC_ACCT,
           disabled
-      )" | sed 's/[|]/,/g' | sed 's/[+]//g' | sed 's/[---]//g' |perl -pe 's/\d\K[,]/  /g' | perl -pe 's/\w\K[,]/  /g' > firewalls.csv
+      )" | sed 's/[|]/,/g' | tail -n +4 | head -n -1 | sed 's/.$//; s/^.//' > firewalls.csv
 ```
 
 ### Extracting the GCP routes to a CSV file
